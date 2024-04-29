@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base target="_top">
+    <!-- Include Google Icon Font and Material Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- Include Roboto Font from Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" type="text/css">
+    <!-- Custom Styles for Form -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 16px;
+            box-sizing: border-box;
+        }
+        .mdc-text-field {
+            width: 100% important;
+            margin-top: 16px;
+        }
+        .mdc-text-field {
+            border: none !important;
+            border-bottom: 1px solid #000 !important;
+            outline: none !important;
+            padding: 0 !important;
+            font-size: 16px !important;
+            width: 100% !important;
+            box-sizing: border-box !important; Added for box-sizing
+            height: 48px !important; Increased height
+        }
+
+        .mdc-text-field__input {
+          width: 100% !important;
+        }
+        .mdc-text-field input:focus {
+            border-bottom: 2px solid #6200ea; /* Focus color */
+        }
+        /* Helper text style */
+        .mdc-text-field-helper-text {
+            margin-left: 0;
+            margin-top: 4px;
+            color: #666;
+            font-size: 12px;
+        }
+        .mdc-dialog__actions {
+            text-align: center;
+            margin-top: 24px;
+        }
+        .mdc-dialog__actions button {
+            border: none;
+            background-color: #6200ea;
+            color: white;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px #999;
+            cursor: pointer;
+            font-weight: 500;
+            outline: none; /* Remove focus outline */
+        }
+        .mdc-dialog__actions button:hover {
+            background-color: #5f00db;
+        }
+        .mdc-floating-label {
+          padding-bottom: 0px;
+        }
+    </style>
+</head>
+<body>
+    <h4> Your New File Has Been Created</h4>
+    <button type="button" class="mdc-button mdc-dialog__button" onclick="goToNewFile()">
+        <span class="mdc-button__label">Go To New File</span>
+    </button>
+    </div>
+
+    <script>
+    function goToNewFile() {
+      window.open('<?= preferences.url ?>', '_blank');
+    }
+    </script>
+</body>
+</html>

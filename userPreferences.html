@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base target="_top">
+    <!-- Include Google Icon Font and Material Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- Include Roboto Font from Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" type="text/css">
+    <!-- Custom Styles for Form -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 16px;
+            box-sizing: border-box;
+        }
+        .mdc-text-field {
+            width: 100% important;
+            margin-top: 16px;
+        }
+        .mdc-text-field {
+            border: none !important;
+            border-bottom: 1px solid #000 !important;
+            outline: none !important;
+            padding: 0 !important;
+            font-size: 16px !important;
+            width: 100% !important;
+            box-sizing: border-box !important; Added for box-sizing
+            height: 48px !important; Increased height
+        }
+
+        .mdc-text-field__input {
+          width: 100% !important;
+        }
+        .mdc-text-field input:focus {
+            border-bottom: 2px solid #6200ea; /* Focus color */
+        }
+        /* Helper text style */
+        .mdc-text-field-helper-text {
+            margin-left: 0;
+            margin-top: 4px;
+            color: #666;
+            font-size: 12px;
+        }
+        .mdc-dialog__actions {
+            text-align: center;
+            margin-top: 24px;
+        }
+        .mdc-dialog__actions button {
+            border: none;
+            background-color: #6200ea;
+            color: white;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px #999;
+            cursor: pointer;
+            font-weight: 500;
+            outline: none; /* Remove focus outline */
+        }
+        .mdc-dialog__actions button:hover {
+            background-color: #5f00db;
+        }
+        .mdc-floating-label {
+          padding-bottom: 0px;
+        }
+    </style>
+</head>
+<body>
+    <h4>Tables 2 is purpose build to help move Confluence pages that are pasted into GDocs into more readable formats. There are several customization options below.</h4>
+    <p>Initially limited in scope, there maybe expanded customization and more formatting/use cases supported in the future</p> 
+    <!-- Base URL for Jira Tickets -->
+    <label class="mdc-floating-label" for="basePeopleURL">Base JIRA URL:</label>
+    <input type="text" id="baseTicketURL" name="baseTicketURL" class="mdc-text-field__input" value="<?= preferences.baseTicketURL ? preferences.baseTicketURL : '' ?>">
+    <p class="mdc-text-field-helper-text">Tables 2 has special handing for Jira issue keys if the column is titled "Ticket" If you have a Base URL you'd like to include for in text links, you can add that here.</p>
+    <!-- Base URL for People Links -->
+    <label class="mdc-floating-label" for="basePeopleURL">Base People Links URL:</label>
+    <input type="text" id="basePeopleURL" name="basePeopleURL" class="mdc-text-field__input" value="<?= preferences.basePeopleURL ? preferences.basePeopleURL : '' ?>">
+    <p class="mdc-text-field-helper-text">Tables 2 can keep an eye out for links related to people. It will remove the link and add an '@' to the name for easy copy, pasting, and tagging.</p>
+
+    <!-- New Document Name -->
+    <label class="mdc-floating-label" for="preferredFileName">New Document Name Default</label>
+    <input type="text" id="preferredFileName" name="preferredFileName" class="mdc-text-field__input" value="<?= preferences.preferredFileName ? preferences.preferredFileName : '' ?>">
+    <p class="mdc-text-field-helper-text">By deault, Tables 2 will make your new document will be created with it's original name along with the selected output type. You can add a default file name if you'd like to override this.</p>
+
+
+                <div class="mdc-dialog__actions">
+                    <button type="button" class="mdc-button mdc-dialog__button" onclick="saveSettings()">
+                        <span class="mdc-button__label">Save Settings</span>
+                    </button>
+                </div>
+            </div>
+        </div> 
+    </div>
+
+    <script>
+function saveSettings() {
+    // Manually collect the input values
+    var settings = {
+        baseTicketURL: document.getElementById('baseTicketURL').value,
+        basePeopleURL: document.getElementById('basePeopleURL').value,
+        preferredFileName: document.getElementById('preferredFileName').value
+    };
+    
+    // Call the Google Apps Script function with the collected settings
+    google.script.run.withSuccessHandler(function() {
+        google.script.host.close(); // Close the dialog/sidebar once done
+    }).saveUserSettings(settings);
+}
+    </script>
+</body>
+</html>
